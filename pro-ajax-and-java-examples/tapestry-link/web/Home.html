@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+    <title>Tapestry: Invoking Server Side Logic</title>
+  </head>
+  <body>
+    <h1>Tapestry Invoking Server Side Logic</h1>
+    The current value is:
+    <strong>
+        <span jwcid="@Insert" value="ognl:counter" />
+    </strong>
+    <a href="#" jwcid="increment@DirectLink" 
+        listener="listener:incrementCounter">Increment</a>
+    <p>
+    <a href="#" jwcid="reset@DirectLink" 
+        listener="listener:resetCounter">Reset</a>
+    </p>
+    <p>
+    <a href="#" jwcid="add3@DirectLink" parameters="ognl:3"
+        listener="listener:addToCounter">Add 3</a>
+    </p>
+  </body>
+</html>

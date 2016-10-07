@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+    <form-beans>
+        <form-bean name="reservationForm" 
+        type="com.proajax.chapt5.validation.ui.ReservationForm"/>
+        
+        <form-bean name="autocompleteForm"
+        type="com.proajax.chapt5.strutslayout.ui.AutocompleteForm"/>
+    </form-beans>
+
+    <action-mappings>
+        <action path="/reservation" 
+        type="org.apache.struts.actions.ForwardAction"
+        name="reservationForm"
+        scope="request"
+        parameter="/hotelReservation.jsp" />
+            
+        <action path="/validateReservation" 
+            type="com.proajax.chapt5.validation.ui.ValidateReservationAction" 
+            name="reservationForm" validate="true"
+            input="/jsp/validation/reservationErrors.jsp" >
+            <forward name="valid" path="/jsp/validation/blank.jsp"/>
+            <forward name="invalid" 
+            path="/jsp/validation/reservationErrors.jsp"/>
+        </action>
+
+        <action path="/saveReservation"
+            type="com.proajax.chapt5.validation.ui.SaveReservationAction"
+            name="reservationForm"
+            validate="true"
+            input="/hotelReservation.jsp">
+            
+            <forward name="success" 
+            path="/jsp/validation/reservationSuccessful.jsp"/>
+            
+            <forward name="fail" path="/hotelReservation.jsp"/>
+        </action>
+        
+        <action path="/findNames" type="com.proajax.chapt5.strutslayout.ui.FindNamesAction" name="autocompleteForm">
+            <forward name="ok" path="/jsp/strutsLayout.jsp"/>
+        </action>
+
+    </action-mappings> 
+
+    <controller
+    processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+    <message-resources parameter="MessageResources" />
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+
+        <!-- Path to XML definition file -->
+        <set-property property="definitions-config"
+        value="/WEB-INF/tiles-defs.xml" />
+
+        <!-- Set Module-awareness to true -->
+        <set-property property="moduleAware" value="true" />
+    </plug-in>
+
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+        property="pathnames"
+        value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+
+</struts-config>
+

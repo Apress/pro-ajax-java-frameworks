@@ -1,0 +1,29 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+    "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+<dwr>
+    <allow>
+        <create creator="spring" javascript="SpringBean">
+            <param name="beanName" value="serviceBean"/>
+        </create>
+
+        <create creator="spring" javascript="ProductService">
+            <param name="beanName" value="productServiceProxy"/>
+        </create>
+        
+        <convert converter="bean" match="com.proajax.chapt7.domain.Product">
+            <param name="include" value="id, name, description, price"/>
+        </convert>
+
+        <convert converter="bean" 
+            match="com.proajax.chapt7.ui.ProductSearchResult">
+            <param name="products, resultCount"/>
+        </convert>
+
+        <convert converter="bean" 
+            match="com.proajax.chapt7.ui.UpdateProductPriceResult">
+            <param name="successful, errorMessages"/>
+        </convert>
+    </allow>
+</dwr>

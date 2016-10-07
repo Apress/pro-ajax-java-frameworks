@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html jwcid="@Shell" title="Test2">
+<head>
+  <script type="text/javascript"> 
+    djConfig = { isDebug: false, 
+               baseRelativePath: "scripts/dojo/", 
+               preventBackButtonFix: false };
+  </script>
+  <script type="text/javascript" src="scripts/dojo/dojo.js"></script>
+  <script type="text/javascript" src="scripts/prototype.js"></script>
+</head>
+<body jwcid="@Body">
+  <form jwcid="podcastForm@tacos:AjaxForm">
+    <table>
+      <tr>
+        <th align="left">Podcast Name</th>
+        <td>
+          <input jwcid="podcastName@TextField" value="ognl:podcast.Name"
+           displayName="Podcast Name" />
+        </td>
+      </tr>
+      <tr>
+        <th align="left">Short Description</th>
+        <td>
+          <input jwcid="shortDescription@TextField" value="ognl:podcast.ShortDescription"
+           displayName="Short Description" />
+        </td>
+      </tr>
+      <tr>
+        <th align="left">Long Description</th>
+        <td>
+          <input jwcid="long@TextArea" value="ognl:podcast.LongDescription"
+           displayName="Long Description" rows="5" cols="40"/>
+        </td>
+      </tr>
+      <tr>
+        <th align="left">Release Date</th>
+        <td>
+          <input jwcid="releaseDate@DatePicker" 
+           value="ognl:podcast.ReleaseDate"/>
+        </td>
+      </tr>
+      <tr>
+        <th align="left">Podcast Length</th>
+        <td>
+          <input jwcid="length@TextField" value="ognl:podcast.Length"/>
+        </td>
+      </tr>
+      <tr>
+        <th align="left">Played?</th>
+        <td>
+          <input jwcid="played@Checkbox" value="ognl:podcast.Played"/>
+        </td>
+      </tr>
+    </table>
+
+    <input jwcid="podcast@tacos:AjaxSubmit"
+     value="Add Podcast"
+     action="listener:addPodcast"
+     updateComponents="ognl:{'podcasts'}"
+     effects="template:{highlight:{any:'[255,255,184], 500, 500'}}" />
+  </form>
+
+  <div jwcid="@Any" id="podcasts">
+    <span jwcid="@If" condition="ognl:podcast.Name">
+      <table>
+        <tbody>
+          <tr>
+            <th align="left">Podcast Name:</th>
+            <th align="left">Short Desc:</th>
+            <th align="left">Long Desc:</th>
+            <th align="left">Release Date:</th>
+            <th align="left">Podcast Length:</th>
+            <th align="left">Played?</th>
+          </tr>
+          <tr>
+            <td>
+              <span jwcid="@Insert" value="ognl:podcast.Name" />
+            </td>
+            <td>
+              <span jwcid="@Insert" value="ognl:podcast.ShortDescription" />
+            </td>
+            <td>
+              <span jwcid="@Insert" value="ognl:podcast.LongDescription" />
+            </td>
+            <td>
+              <span jwcid="@Insert" value="ognl:podcast.ReleaseDate" />
+            </td>
+            <td>
+              <span jwcid="@Insert" value="ognl:podcast.Length" />
+            </td>
+            <td>
+              <span jwcid="@Insert" value="ognl:podcast.Played ? 'Yes' : 'No'" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </span>
+  </div>
+</body>
+</html>

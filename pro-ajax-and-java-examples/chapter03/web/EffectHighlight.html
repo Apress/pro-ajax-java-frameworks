@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+    <title>Script.aculo.us: Effect.Highlight</title>
+    <script src="scripts/prototype.js" type="text/javascript"></script>
+    <script src="scripts/effects.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      function fadeAnything() {
+        new Effect.Highlight('fadeMe', 
+          { startcolor: '660000', 
+            endcolor: 'FFFF00', 
+            restorecolor: '#ffffff'});
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Script.aculo.us: Effect.Highlight</h1>
+    <div id="fadeMe">
+      <h2>The Fade Anything Technique!</h2>
+    </div>
+    <input type="button" value="Fade Me!" 
+      onclick="fadeAnything();"/>
+  </body>
+</html>

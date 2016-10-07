@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+    "-//Apache Software Foundation//DTD Commons Validator Rules 
+     Configuration 1.1.3//EN"
+     "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+    <global>
+      <constant>
+         <constant-name>phoneFormat</constant-name>
+
+         <constant-value>^\(?\d{3}\)?\s|-\d{3}-\d{4}$</constant-value>
+      </constant>
+
+      <constant>
+             <constant-name>dateFormat</constant-name>
+
+         <constant-value>^\d{1,2}/\d{1,2}/\d{4}$</constant-value>
+      </constant>
+    </global>
+
+    <formset>
+
+        <form name="/validateReservation">
+            <field property="arrivalDate" depends="required, mask">
+                <msg key="errors.date" name="mask"/>
+                <arg0 key="label.arrival.date" resource="true"/>
+                <arg1 key="format.date"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${dateFormat}</var-value>
+                </var>
+            </field>            
+            
+            <field property="departDate" depends="required, mask">
+                <msg key="errors.date" name="mask"/>
+                <arg0 key="label.depart.date" resource="true"/>
+                <arg1 key="format.date"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${dateFormat}</var-value>
+                </var>
+            </field>            
+        </form>
+        
+        <form name="/saveReservation">
+            <field property="arrivalDate" depends="required, mask">
+                <msg key="errors.date" name="mask"/>
+                <arg0 key="label.arrival.date" resource="true"/>
+                <arg1 key="format.date"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${dateFormat}</var-value>
+                </var>
+            </field>            
+            
+            <field property="departDate" depends="required, mask">
+                <msg key="errors.date" name="mask"/>
+                <arg0 key="label.depart.date" resource="true"/>
+                <arg1 key="format.date"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${dateFormat}</var-value>
+                </var>
+            </field>            
+       
+            <field property="smokingPref" depends="required">
+                <arg0 key="label.smoking.pref" resource="true"/>
+            </field>
+
+            <field property="name" depends="required">
+                <arg0 key="label.name" resource="true"/>
+            </field>
+
+            <field property="telephone" depends="required, mask">
+                <msg key="errors.invalid.telephone.format" name="mask"/>
+                <arg0 key="label.telephone" resource="true"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${phoneFormat}</var-value>
+                </var>
+            </field>
+            
+        </form>
+    </formset>
+
+</form-validation>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE faces-config PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+  "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+
+<faces-config>
+  <navigation-rule>
+      <from-view-id>/Echo.jsp</from-view-id>
+      <navigation-case>
+          <from-outcome>hello</from-outcome>
+          <to-view-id>/HelloJSF.jsp</to-view-id>
+      </navigation-case>
+  </navigation-rule>
+
+    <navigation-rule>
+      <from-view-id>/Echo3.jsp</from-view-id>
+      <navigation-case>
+          <from-outcome>nate</from-outcome>
+          <to-view-id>/HelloJSF.jsp</to-view-id>
+      </navigation-case>
+      <navigation-case>
+          <from-outcome>notNate</from-outcome>
+          <to-view-id>/NotNate.jsp</to-view-id>
+      </navigation-case>
+  </navigation-rule>
+
+  <managed-bean>
+      <managed-bean-name>user</managed-bean-name>
+      <managed-bean-class>proajax.chap8.User</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  
+  <managed-bean>
+      <managed-bean-name>billpay</managed-bean-name>
+      <managed-bean-class>proajax.chap8.BillPay</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+
+  <validator>
+      <validator-id>nameValidator</validator-id>
+      <validator-class>proajax.chap8.CustomValidator</validator-class>
+  </validator>
+
+   <lifecycle>
+       <phase-listener>proajax.chap8.AjaxPhaseListener</phase-listener>
+   </lifecycle>
+   
+   <component>
+       <component-type>proajax.chap8.FormComplete</component-type>
+       <component-class>proajax.chap8.UIFormComplete</component-class>
+   </component>
+   
+</faces-config>

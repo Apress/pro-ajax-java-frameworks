@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="serviceBean" 
+    class="com.proajax.chapt7.service.AdvancedHelloWorldService"/>
+
+    <bean id="productDAO"
+    class="com.proajax.chapt7.dao.ProductDAOImpl"/>
+
+    <bean id="productService"
+    class="com.proajax.chapt7.service.ProductServiceImpl">
+        <property name="productDAO" ref="productDAO"/>
+    </bean>
+    
+    <bean id="productServiceRemote"
+    class="com.proajax.chapt7.service.ProductServiceRemote">
+        <property name="productService" ref="productService"/>
+    </bean>
+    
+    <bean id="roleLoggingInterceptor"
+    class="com.proajax.chapt7.aop.RoleLoggingInterceptor"/>
+    
+    <bean id="performanceLoggingInterceptor"
+    class="com.proajax.chapt7.aop.PerformanceLoggingInterceptor"/>
+
+    <bean id="productServiceProxy"
+    class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <ref local="productServiceRemote"/>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>roleLoggingInterceptor</value>
+                <value>performanceLoggingInterceptor</value>
+            </list>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,49 @@
+<html jwcid="@Shell" title="Add New Podcast">
+  <body jwcid="@Body">
+    <h1>Add New Podcast</h1>
+    <form jwcid="form@Form" success="listener:addPodcast">
+      <table>
+        <tr>
+          <th>Podcast Name</th>
+          <td>
+            <input jwcid="name@TextField" value="ognl:podcast.name" size="40"/>
+          </td>
+        </tr>
+        <tr>
+          <th>Short Description</th>
+          <td>
+            <input jwcid="short@TextField" value="ognl:podcast.shortDescription" 
+              size="40"/>
+          </td>
+        </tr>
+        <tr>
+          <th>Long Description</th>
+          <td>
+            <textarea jwcid="long@TextArea" value="ognl:podcast.longDescription" 
+              rows="5" cols="40"/>
+          </td>
+        </tr>
+        <tr>
+          <th>Release Date</th>
+          <td>
+            <input jwcid="releaseDate@DatePicker" 
+              value="ognl:podcast.releaseDate"/>
+          </td>
+        </tr>
+        <tr>
+          <th>Podcast Length</th>
+          <td>
+            <input jwcid="length@TextField" value="ognl:podcast.length"/>
+          </td>
+        </tr>
+        <tr>
+          <th>Played?</th>
+          <td>
+            <input jwcid="played@Checkbox" value="ognl:podcast.played"/>
+          </td>
+        </tr>
+      </table>
+      <input type="submit" value="Add Podcast"/>
+    </form>
+  </body>
+</html>

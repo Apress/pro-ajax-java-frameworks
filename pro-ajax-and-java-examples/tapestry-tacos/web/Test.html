@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html jwcid="@Shell" title="Test">
+  <head>
+    <script type="text/javascript"> 
+      djConfig = { isDebug: false, 
+                   baseRelativePath: "scripts/dojo/", 
+                   preventBackButtonFix: false };
+    </script>
+    <script type="text/javascript" src="scripts/dojo/dojo.js"></script>
+    <script type="text/javascript" src="scripts/prototype.js"></script>
+  </head>
+<body jwcid="@Body">
+    <form jwcid="buttonForm@tacos:AjaxForm">
+        <label jwcid="@FieldLabel" field="component:buttonFirstName" />
+        <input jwcid="buttonFirstName@TextField" value="ognl:buttonName.Name"
+               displayName="Podcast Name" />
+        <label jwcid="@FieldLabel" field="component:buttonLastName" />
+        <input jwcid="buttonLastName@TextField" value="ognl:buttonName.ShortDescription"
+               displayName="Short Description" />
+        <input jwcid="normalButton@tacos:AjaxSubmit"
+               value="Normal Name"
+               action="listener:doFoo"
+               updateComponents="ognl:{'buttonFullName'}"
+               effects="template:{highlight:{any:'[255,255,184], 500, 500'}}" />
+    </form>
+
+  <div jwcid="@Any" id="buttonFullName" class="displayName">
+    <span jwcid="@If" condition="ognl:buttonName.Name">
+        <label>Full Name:</label>
+        <span jwcid="@Insert" value="ognl:buttonName.Name" />
+        <label>Short Desc:</label>
+        <span jwcid="@Insert" value="ognl:buttonName.ShortDescription" />
+    </span>
+  </div>
+</body>
+</html>

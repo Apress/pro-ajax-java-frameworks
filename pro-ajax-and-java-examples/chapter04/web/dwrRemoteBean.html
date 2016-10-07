@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+                    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>DWR Remote Bean</title>
+        <script type="text/javascript" 
+        src="/chapter04/dwr/interface/RemoteBean.js"></script>
+        <script type="text/javascript" src="/chapter04/dwr/engine.js"></script>
+        <script type="text/javascript" src="/chapter04/dwr/util.js"></script>
+        <script type="text/javascript" src="js/template.js"></script>
+        <script type="text/javascript" src="js/dwrRemoteBean.js"></script>
+        
+        <link rel="stylesheet" href="css/main.css" type="text/css" />
+    </head>
+    <body>
+    <h3>Get Server Date</h3>
+    <p>
+        Get server date: 
+        <button onclick="getServerDateTime();">
+            Get Server Date
+        </button>
+
+        <span id="serverDateTime" class="response"></span>
+    </p>
+        
+    <h3>Pass a Single Parameter</h3>
+    <p>
+        Calculate the Sum of All Characters in String : 
+        <input type="text" id="textInput"/>
+        <button onclick="getSumOfCharactersInString();">
+            Calculate Sum of Characters
+        </button>
+
+        <br/>Sum of Characters in String: 
+        <span id="characterSumResponse" class="response"></span>
+    </p>
+        
+    <h3>Pass Multiple Parameters</h3>
+    <p>
+        Generate Your Lucky Number for Today:
+        <br/>Name: <input type="text" id="nameInput"/>
+        <br/>Password: <input type="password" id="passwordInput"/>
+        <button onclick="getLuckyNumber();">
+            Get Lucky Number
+        </button>
+
+        <br/><br/>Your Lucky Number for Today is: 
+        <span id="luckyNumberResponse" class="response"></span>
+    </p>
+        
+    <h3>Communicating Using Objects</h3>
+    <p>
+        <button onclick="getPerson();">Get Person</button>
+        
+        <br/>
+        First Name: <span id="firstName" class="response"></span>
+        
+        <br/>
+        Last Name: <span id="lastName" class="response"></span>
+        
+        <br/>
+        Age: <span id="age" class="response"></span>
+    </p>
+    
+    <p>Addresses:</p>
+    <table id="addresses" border="1">
+        <thead>
+            <tr>
+                <th>Address Line 1</th>
+                <th>Address Line 2</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="addressesTbody">
+            <tr><td colspan="6">No Results</td></tr>
+        </tbody>
+    </table>
+    
+    
+    <h3>Rendering Output with JST</h3>
+    <p>
+        <button onclick="getPersonUsingJst();">Get Person</button>
+
+    </p>
+    
+    <div id="jstOutput">
+        
+    </div>
+    
+<textarea id="personTemplate" style="display:none;">
+    <p>
+        <br/>
+        First Name: <span class="response">${firstName}</span>
+
+        <br/>
+        Last Name: <span class="response">${lastName}</span>
+
+        <br/>
+        Age: <span class="response">${age}</span>
+    </p>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Address Line 1</th>
+                <th>Address Line 2</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {for address in addresses}
+                <tr>
+                    <td><input type="text" id="addr1-jst-${address.id}" 
+                    value="${address.addressLine1}"/></td>
+                    <td><input type="text" id="addr2-jst-${address.id}" 
+                    value="${address.addressLine2}"/></td>
+                    <td><input type="text" id="city-jst-${address.id}" 
+                    value="${address.city}"/></td>
+                    <td><input type="text" id="state-jst-${address.id}" 
+                    value="${address.state}"/></td>
+                    <td><input type="text" id="zip-jst-${address.id}" 
+                    value="${address.zip}"/></td>
+                    <td>
+                    <button 
+                    onclick="saveAddressFromJstTable(${address.id});">
+                    Save</button></td>
+                </tr>
+            {/for}
+        </tbody>
+    </table>
+
+</textarea>
+    
+    </body>
+</html>

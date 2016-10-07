@@ -1,0 +1,24 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+    "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+<dwr>
+    <allow>
+        <create creator="new" javascript="RemoteBean">
+            <param name="class" value="com.proajax.chapt4.RemoteBean"/>
+        </create>
+
+        <convert converter="bean" match="com.proajax.chapt4.Person">
+            <param name="include" value="firstName, lastName, age, addresses"/>
+        </convert>
+
+        <convert converter="bean" match="com.proajax.chapt4.Address">
+            <param name="include" value="id, addressLine1, addressLine2, city, 
+            state, zip"/>
+        </convert>
+
+        <convert converter="bean" match="com.proajax.chapt4.BankAccount">
+            <param name="include" value="accountNumber, ownerName, balance"/>
+        </convert>
+    </allow>
+</dwr>

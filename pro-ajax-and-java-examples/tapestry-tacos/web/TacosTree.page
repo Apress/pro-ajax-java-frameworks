@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE page-specification PUBLIC
+  "-//Apache Software Foundation//Tapestry Specification 4.0//EN"
+  "http://jakarta.apache.org/tapestry/dtd/Tapestry_4_0.dtd">
+<page-specification>
+<property name="file"/>
+
+<property name="selectedFile" persist="session"/>
+
+<property name="fileState" persist="session"
+          initial-value="ognl: new java.util.HashSet()"/>
+
+<component id="nodeLink" type="tacos:AjaxDirectLink">
+  <binding name="listener"
+           value="ognl:components.tree.listeners.contentExpansion"/>
+  <binding name="parameters"
+           value="ognl:{keyProvider.getKey(components.tree.value),
+                  not components.tree.isExpanded(
+                    components.tree.value),file.path}"/>
+  <binding name="updateComponents"
+           value="ognl:{file.path, 'selectedFile' }"/>
+  <binding name="effects"
+           value="template:%nodeLink.effects"/>
+</component>
+
+<component id="nodeLabel" type="Insert">
+  <binding name="value"
+           value="ognl:@org.apache.commons.lang.StringEscapeUtils@escapeJavaScript(file.name)"/>
+  <binding name="class"
+           value="ognl:file == selectedFile ? 'selected' : null"/>
+</component>
+
+<bean name="evenOdd" class="org.apache.tapestry.bean.EvenOdd"/>
+
+<component id="tree" type="tacos:Tree">
+    <binding name="contentProvider" value="ognl:contentProvider"/>
+    <binding name="keyProvider" value="ognl:keyProvider"/>
+    <binding name="value" value="ognl:file"/>
+    <binding name="state" value="ognl:fileState"/>
+    <binding name="sorter" value="ognl:@com.proajax.chapt6.FileComparator@INSTANCE"/>
+    <binding name="rowStyle" value="ognl:beans.evenOdd"/>
+    <binding name="partialBlockClass" value="literal:treeBlock"/>
+    <binding name="linkListener" value="listener:select"/>
+    <binding name="delayedLoad" value="ognl:true"/>
+    <binding name="loadElement" value="literal:partialWait"/>
+</component>
+
+<component id="icon" type="Image">
+    <binding name="image" value="ognl:file.directory ? assets.folder : assets.item"/>
+</component>
+
+<asset name="folder" path="images/folder.png"/>
+<asset name="item" path="images/item.png"/>
+</page-specification>
+   
+   

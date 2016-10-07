@@ -1,0 +1,28 @@
+There were ${resultCount} results.
+
+<br /><br />
+<table border="1" cellspacing="0" width="80%">
+    <thead>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th colspan="2">Curent Price</th>
+    </thead>
+    <tbody>
+        {for p in products}
+            <tr>
+                <td>${p.name}</td>
+                <td>${p.description}</td>
+                <td>$ 
+                    <input type="text" id="id-${p.id}" 
+                        value="${p.price}" size="6" style="text-align:right;"/>
+                </td>
+                <td>
+                    <button onclick="updatePrice(${p.id}
+                        , document.getElementById('id-${p.id}').value);">
+                        Update Price
+                    </button>
+                </td>
+            </tr>
+        {/for}
+    </tbody>
+</table>

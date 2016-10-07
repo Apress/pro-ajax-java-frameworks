@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html jwcid="@Shell" title="My Podcasts">
+  <head>
+    <script type="text/javascript"> 
+      djConfig = { isDebug: false, 
+                   baseRelativePath: "scripts/dojo/", 
+                   preventBackButtonFix: false };
+    </script>
+    <script type="text/javascript" src="scripts/dojo/dojo.js"></script>
+    <script type="text/javascript" src="scripts/prototype.js"></script>
+  </head>
+  <body jwcid="@Body">
+    <h1>My Podcasts</h1>
+    <table>
+        <tbody>
+            <tr>
+              <th>Podcast Name</th>
+              <th>Short Description</th>
+              <th>Details</th>
+            </tr>
+            <tr>
+              <td>Java Posse #29 Newscast</td>
+              <td>Newscast for 1/26/2006</td>
+              <td>Details</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    <input type="button" value="Add Podcast" onclick="Element.toggle('addPodcast');"/> 
+    <div id="addPodcast">
+    <form jwcid="form">
+      <table>
+        <tr>
+          <th>Podcast Name</th>
+          <td>
+            <input jwcid="name@TextField" value="ognl:podcast.name" size="40"/>
+          </td>
+        </tr>
+        <tr>
+          <th>Short Description</th>
+          <td>
+            <input jwcid="short@TextField" value="ognl:podcast.shortDescription" 
+              size="40"/>
+          </td>
+        </tr>
+        <tr>
+          <th>Long Description</th>
+          <td>
+            <textarea jwcid="long@TextArea" value="ognl:podcast.longDescription" 
+              rows="5" cols="40"/>
+          </td>
+        </tr>
+        <tr>
+          <th>Release Date</th>
+          <td>
+            <input jwcid="releaseDate@DatePicker" 
+              value="ognl:podcast.releaseDate"/>
+          </td>
+        </tr>
+        <tr>
+          <th>Podcast Length</th>
+          <td>
+            <input jwcid="length@TextField" value="ognl:podcast.length"/>
+          </td>
+        </tr>
+        <tr>
+          <th>Played?</th>
+          <td>
+            <input jwcid="played@Checkbox" value="ognl:podcast.played"/>
+          </td>
+        </tr>
+      </table>
+      <input jwcid="@tacos:AjaxSubmit" value="Add Podcast"
+         updateComponents="ognl:{'test'}" />
+    </form>        
+    </div>
+  
+    <div jwcid="test@Any" >
+      You entered <span jwcid="@Insert" value="ognl:podcast.name" />.
+    </div>
+  
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<html jwcid="@Shell" title="Show Podcast">
+  <body jwcid="@Body">
+    <h1>Show Podcast</h1>
+      <table>
+        <tr>
+          <th align="left">Podcast Name:</th>
+          <td>
+            <span jwcid="name@Insert" value="ognl:podcast.name"/>
+          </td>
+        </tr>
+        <tr>
+          <th align="left">Short Description:</th>
+          <td>
+            <span jwcid="short@Insert" value="ognl:podcast.shortDescription"/>
+          </td>
+        </tr>
+        <tr>
+          <th align="left">Long Description:</th>
+          <td>
+            <span jwcid="long@Insert" value="ognl:podcast.longDescription"/>
+          </td>
+        </tr>
+        <tr>
+          <th align="left">Release Date:</th>
+          <td>
+            <span jwcid="releaseDate@Insert" value="ognl:podcast.releaseDate"/>
+          </td>
+        </tr>
+        <tr>
+          <th align="left">Podcast Length:</th>
+          <td>
+            <span jwcid="length@Insert" value="ognl:podcast.length"/>
+          </td>
+        </tr>
+        <tr>
+          <th align="left">Played?</th>
+          <td>
+            <span jwcid="played@Insert"
+              value="ognl:podcast.played ? 'Yes' : 'No'"/>
+          </td>
+        </tr>
+      </table>
+  </body>
+</html>

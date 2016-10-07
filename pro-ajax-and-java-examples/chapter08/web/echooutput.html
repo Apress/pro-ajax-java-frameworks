@@ -1,0 +1,26 @@
+
+<html>
+    
+    <head>
+        <title>A Simple JSF Example</title>
+        <script type="text/javascript">
+                function showValue() {
+                  var value = document.getElementById("name");
+                  alert("The value is: " + value); 
+                }
+        </script>
+
+    </head>
+    <body>
+        <form id="_id0" method="post" action="/proAjax8/faces/Echo2.jsp" 
+            enctype="application/x-www-form-urlencoded">
+
+        <h1>Please Enter Your Name</h1>
+        Name: <input id="_id0:name" type="text" name="_id0:name" 
+                onblur="showValue()" />
+        <p>
+        <input type="submit" name="_id0:_id1" value="Say Hello" />
+        <input type="hidden" name="_id0" value="_id0" /></form>
+    </body>
+    
+</html>

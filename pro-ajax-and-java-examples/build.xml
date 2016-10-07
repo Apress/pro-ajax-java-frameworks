@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Examples from Pro Ajax and Java" basedir="." default="dist">
+    <description>Builds the source distribution for the examples in Pro Ajax and Java.</description>
+    
+    <target name="dist">
+        <property name="zip-file-name" value="${basedir}/../1590596773-1.zip"/>
+        
+        <!-- build the subprojects -->
+        <ant antfile="build.xml" dir="chapter02" target="dist"/>
+        <ant antfile="build.xml" dir="chapter03" target="dist"/>
+        <ant antfile="build.xml" dir="chapter04" target="dist"/>
+        <ant antfile="build.xml" dir="chapter05" target="dist"/>
+        <ant antfile="build.xml" dir="chapter06" target="dist"/>
+        <ant antfile="build.xml" dir="chapter07" target="dist"/>
+        <ant antfile="build.xml" dir="chapter08" target="dist"/>
+        <ant antfile="build.xml" dir="tapestry-forms" target="dist"/>
+        <ant antfile="build.xml" dir="tapestry-hello" target="dist"/>
+        <ant antfile="build.xml" dir="tapestry-link" target="dist"/>
+        <ant antfile="build.xml" dir="tapestry-tacos" target="dist"/>
+        
+        <!-- delete the previous one -->
+        <delete file="${zip-file-name}"/>
+        
+        <!-- build the zip file with source code, war files, etc -->
+        <zip destfile="${zip-file-name}">
+            <zipfileset dir=".." 
+                excludes="**/build/**, **/nbproject/private/**, **/*~"/>
+        </zip>
+    
+    </target>
+
+</project>
